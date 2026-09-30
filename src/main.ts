@@ -60,6 +60,9 @@ const FlashPreset = definePreset(Aura, {
 app.use(PrimeVue, {
   theme: {
     preset: FlashPreset,
+    options: {
+      darkModeSelector: 'app-dark',
+    },
   },
 })
 
