@@ -1,6 +1,10 @@
 <script setup>
+import { useAuthStore } from '@/stores/auth.store'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+
+const authStore = useAuthStore()
+const { user } = authStore
 
 const route = useRoute()
 
@@ -63,8 +67,8 @@ const menuItems = ref([
         </div>
 
         <div class="text-left">
-          <div class="text-sm font-semibold text-surface-900">Daus Kepow</div>
-          <div class="text-xs text-surface-500">daus@gmail.com</div>
+          <div class="text-sm font-semibold text-surface-900">{{ user?.name }}</div>
+          <div class="text-xs text-surface-500">{{ user?.email }}</div>
         </div>
 
         <!-- icon logout -->

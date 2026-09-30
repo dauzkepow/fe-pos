@@ -1,11 +1,33 @@
 <script setup lang="ts">
-import { Button, InputText } from 'primevue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth.store'
+import { Button, InputText, Message } from 'primevue'
 import { ref } from 'vue'
 
+const auth = useAuthStore()
+const error = ref<string | null>(null)
 const form = ref({
   email: '',
   password: '',
 })
+
+async function login() {
+  error.value = null
+
+  // jika email dan password belum diisi
+  if (!form.value.email || !form.value.password) {
+    error.value = 'Email and Password are required!'
+    return
+  }
+
+  // jika sudah diisi
+  try {
+    await auth.login(form.value.email, form.value.password)
+    router.push({ name: 'dashboard' })
+  } catch (e) {
+    error.value = 'Invalid email or Password!'
+  }
+}
 </script>
 
 <template>
@@ -26,7 +48,10 @@ const form = ref({
         </div>
 
         <!-- form -->
-        <form action="" class="flex flex-col gap-5">
+        <form @submit.prevent="login" class="flex flex-col gap-5">
+          <!-- error message -->
+          <Message v-if="error" severity="error" :closable="false">{{ error }}</Message>
+
           <!-- Email -->
           <div class="flex flex-col gap-2">
             <label for="email" class="font-medium text-surface-900"

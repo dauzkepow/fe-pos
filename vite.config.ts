@@ -15,4 +15,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+
+  // vue ganti port ke 3000
+  server: {
+    port: 3000,
+  },
 })
