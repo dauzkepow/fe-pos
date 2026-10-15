@@ -16,6 +16,7 @@ import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import { deleteCategory } from '@/api/product-categories.api'
+import { RouterLink } from 'vue-router'
 
 const productCategoryStore = useProductCategoryStore()
 const { fetch, setLimit, setPage, nextPage, prevPage } = productCategoryStore // panggil fungsi, bagian action
@@ -88,7 +89,9 @@ onMounted(() => {
 
       <Button asChild v-slot="slotProps">
         <!-- Routerlink pindah antar link karena SPA -->
-        <RouterLink :class="slotProps.class"> Add Category </RouterLink>
+        <RouterLink :to="{ name: 'product-categories-create' }" :class="slotProps.class">
+          Add Category
+        </RouterLink>
       </Button>
     </div>
 
@@ -130,6 +133,18 @@ onMounted(() => {
         <Column header="Action" style="width: 5rem">
           <template #body="{ data }">
             <div class="flex items-center gap-2">
+              <!-- edit -->
+              <RouterLink :to="{ name: 'product-categories-edit', params: { id: data.id } }">
+                <Button
+                  icon="pi pi-pencil"
+                  text
+                  rounded
+                  severity="primary"
+                  class="w-9! h-9! border-surface-200! text-surface-200! hover:text-primary-600! hover:border-primary-500 bg-white hover:bg-primary-50!"
+                  @click="confirmDelete(data.id)"
+                />
+              </RouterLink>
+              <!-- delete -->
               <Button
                 icon="pi pi-trash"
                 text

@@ -1,6 +1,7 @@
 import AppLayout from '@/layout/AppLayout.vue'
 import Login from '@/pages/auth/Login.vue'
 import Dashboard from '@/pages/Dashboard.vue'
+import CategoryForm from '@/pages/product-categories/CategoryForm.vue'
 import CategoryList from '@/pages/product-categories/CategoryList.vue'
 import { useAuthStore } from '@/stores/auth.store'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -24,10 +25,23 @@ const router = createRouter({
           name: 'dashboard',
           component: Dashboard,
         },
+        // product-categories
         {
           path: '/product-categories',
           name: 'product-categories',
           component: CategoryList,
+        },
+        // create product-categories-create
+        {
+          path: '/product-categories/create', // url yang diakses
+          name: 'product-categories-create', // melakukan navigasi secara programmatic
+          component: CategoryForm, // component yang dirender
+        },
+        // edit
+        {
+          path: '/product-categories/:id/edit',
+          name: 'product-categories-edit',
+          component: CategoryForm,
         },
       ],
     },
