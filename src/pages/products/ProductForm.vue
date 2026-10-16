@@ -205,6 +205,7 @@ onMounted(async () => {
               <label for="product_category_id" class="font-medium text-surface-900"
                 >Category <span class="text-red-600">*</span>
               </label>
+              <!-- Select dilengkapi dengan filter searching -->
               <Select
                 id="product_category_id"
                 v-model="form.product_category_id"

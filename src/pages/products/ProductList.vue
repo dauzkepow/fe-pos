@@ -97,6 +97,17 @@ const confirmDelete = (id: number) => {
   })
 }
 
+// stock
+const getStockClass = (stock: number) => {
+  if (stock === 0) {
+    return 'bg-red-100 text-red-700 border-red-200' // Stok Habis (Merah)
+  }
+  if (stock >= 1 && stock <= 5) {
+    return 'bg-amber-100 text-amber-700 border-amber-200' // Stok Menipis (Kuning/Orange)
+  }
+  return 'bg-emerald-100 text-emerald-700 border-emerald-200' // Stok Aman (Hijau)
+}
+
 // tampilan load jalankan function fetch dan load categories
 onMounted(() => {
   fetch()
@@ -177,7 +188,12 @@ onMounted(() => {
 
         <Column field="stock" header="Stock">
           <template #body="{ data }">
-            <span class="font-medium text-surface-700">{{ data.stock }}</span>
+            <span
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border"
+              :class="getStockClass(data.stock)"
+            >
+              {{ data.stock }}
+            </span>
           </template>
         </Column>
 
