@@ -33,6 +33,11 @@ const menuItems = ref([
         to: '/product-categories',
         label: 'Product Categories',
       },
+      {
+        icon: 'pi pi-tag',
+        to: '/products',
+        label: 'Product',
+      },
     ],
   },
 ])
