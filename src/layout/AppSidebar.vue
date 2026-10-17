@@ -43,6 +43,11 @@ const menuItems = ref([
         to: '/customers',
         label: 'Customer',
       },
+      {
+        icon: 'pi pi-receipt',
+        to: '/transactions',
+        label: 'Transaction',
+      },
     ],
   },
 ])

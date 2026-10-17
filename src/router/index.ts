@@ -7,6 +7,8 @@ import CustomerForm from '@/pages/customers/CustomerForm.vue'
 import CustomerList from '@/pages/customers/CustomerList.vue'
 import ProductForm from '@/pages/products/ProductForm.vue'
 import ProductList from '@/pages/products/ProductList.vue'
+import TransactionDetail from '@/pages/transactions/TransactionDetail.vue'
+import TransactionList from '@/pages/transactions/TransactionList.vue'
 import { useAuthStore } from '@/stores/auth.store'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -82,6 +84,18 @@ const router = createRouter({
           path: '/customers/:id/edit',
           name: 'customers-edit',
           component: CustomerForm,
+        },
+        // transactions
+        {
+          path: '/transactions',
+          name: 'transactions',
+          component: TransactionList,
+        },
+        // detail transaction
+        {
+          path: '/transactions/:id',
+          name: 'transactions-detail',
+          component: TransactionDetail,
         },
       ],
     },
