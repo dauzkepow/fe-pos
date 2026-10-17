@@ -38,6 +38,11 @@ const menuItems = ref([
         to: '/products',
         label: 'Product',
       },
+      {
+        icon: 'pi pi-users',
+        to: '/customers',
+        label: 'Customer',
+      },
     ],
   },
 ])
